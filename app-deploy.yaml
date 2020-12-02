@@ -1,0 +1,63 @@
+apiVersion: appsody.dev/v1beta1
+kind: AppsodyApplication
+metadata:
+  annotations:
+    commit.image.appsody.dev/contextDir: /appsody1
+    commit.image.appsody.dev/date: Tue Oct 27 07:40:30 2020 -0400
+    commit.image.appsody.dev/message: first commit
+    commit.stack.appsody.dev/contextDir: /incubator/nodejs-express
+    commit.stack.appsody.dev/date: Wed Jul 1 16:05:26 2020 +0100
+    commit.stack.appsody.dev/message: 'nodejs-express: Install ca-certificates when
+      building production image (#838)'
+    image.opencontainers.org/created: "2020-12-02T03:03:01-05:00"
+    image.opencontainers.org/documentation: https://github.com/laxmankadam123/ANSIBLE
+    image.opencontainers.org/revision: a0a218d14864776526b6ebc0e73120437ba96263-modified
+    image.opencontainers.org/source: https://github.com/laxmankadam123/ANSIBLE/tree/master
+    image.opencontainers.org/url: https://github.com/laxmankadam123/ANSIBLE
+    stack.appsody.dev/authors: Gireesh Punathil <gireeshpunathil>
+    stack.appsody.dev/configured: docker.io/appsody/nodejs-express:0.4
+    stack.appsody.dev/created: "2020-07-01T15:09:37Z"
+    stack.appsody.dev/description: Express web framework for Node.js
+    stack.appsody.dev/digest: sha256:4d62493bcc83c45665f6fc25959ba7fdc737876851796f81a110dd123bf739b0
+    stack.appsody.dev/documentation: https://github.com/appsody/stacks/tree/master/incubator/nodejs-express/README.md
+    stack.appsody.dev/licenses: Apache-2.0
+    stack.appsody.dev/revision: 06ea2933df2b6f831fef31ddcbe24c7e0135170c
+    stack.appsody.dev/source: https://github.com/appsody/stacks/tree/master/incubator/nodejs-express/image
+    stack.appsody.dev/tag: docker.io/appsody/nodejs-express:0.4.13
+    stack.appsody.dev/title: Node.js Express
+    stack.appsody.dev/url: https://github.com/appsody/stacks/tree/master/incubator/nodejs-express
+  creationTimestamp: null
+  labels:
+    image.opencontainers.org/title: appsody1
+    stack.appsody.dev/id: nodejs-express
+    stack.appsody.dev/version: 0.4.13
+  name: appsody1
+spec:
+  applicationImage: dev.local/appsody1
+  createKnativeService: false
+  expose: true
+  livenessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /live
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+  monitoring:
+    labels:
+      k8s-app: appsody1
+  readinessProbe:
+    failureThreshold: 12
+    httpGet:
+      path: /ready
+      port: 3000
+    initialDelaySeconds: 5
+    periodSeconds: 2
+    timeoutSeconds: 1
+  service:
+    annotations:
+      prometheus.io/scrape: "true"
+    port: 3000
+    type: NodePort
+  stack: nodejs-express
+  version: 1.0.0
